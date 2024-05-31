@@ -1,0 +1,23 @@
+@import '../../../styles/styles.scss';
+
+h5, li > a{
+    color: $base-green
+}
+
+.offcanvas{
+    background-color: $light-black;
+}
+
+.btn, .btn-close{
+    background-color: $base-green;
+}
+
+.navbar-brand{
+    color: $base-green;
+    font-family: $montserrat-font;
+}
+
+.navbar-toggler{
+    background-color: $base-green;
+}
+
