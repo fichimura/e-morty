@@ -1,0 +1,12 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+$dark-green: #208D45;
+$base-green: #5CAD4A;
+$lime-green: #A7CB54;
+$cold-white: #F0F2EB;
+$black: #0D0D0D;
+
+body{
+    background-color: $black !important;
+    color: $lime-green !important
+}
