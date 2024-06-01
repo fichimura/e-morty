@@ -1,0 +1,21 @@
+@import '../../../../styles/styles.scss';
+
+.form-control{
+    background-color: $dark-green;
+    color: $black;
+
+    &:focus{
+        background-color: $base-green;
+        color: $cold-white
+    }
+}
+
+.signup{
+    background-color: $dark-green;
+}
+
+.cancel{
+    background-color: $black;
+    border: 1px solid $dark-green;
+    color: $dark-green
+}
