@@ -12,4 +12,8 @@ export class CharacterService{
     getCharacters(page: number): Observable<any>{
         return this.httpClient.get<Character[]>(`${this.CHARACTER_API_URL}?page=${page}`);
     }
+
+    getCharacter(characterId :string): Observable<Character>{
+        return this.httpClient.get<Character>(`${this.CHARACTER_API_URL}/${characterId}`);
+    }
 }
