@@ -2,7 +2,7 @@
 <section>
   <h2>About the project</h2>
   <p> 
-      E-Morty is a wiki based in three main subjects that you can search for more informations.
+      E-Morty is a Rick and Morty wiki based in three main subjects that you can search for more informations.
       The first main subject is the Characters, in which the user has the possibility to search for a specific 
       character. With that you can know the name, species, if the searched person is alive, which species it belongs, gender and 
       many other features about it.

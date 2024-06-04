@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
+
 
 
 @Component({
@@ -15,17 +16,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService){}
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
     });
   }
 
-  onLogout(){
+  onLogout(): void{
     this.authService.logout();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy(): void{
     this.authSubscription.unsubscribe();
   }
 }

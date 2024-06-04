@@ -17,6 +17,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { environment } from '../environments/environment';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { CharacterService } from './services/character.service';
+import { CharacterComponent } from './pages/character/character.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CharacterService } from './services/character.service';
     SignupComponent,
     SigninComponent,
     UserProfileComponent,
-    CharactersComponent
+    CharactersComponent,
+    CharacterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

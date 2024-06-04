@@ -1,0 +1,18 @@
+@import "../../../styles/styles.scss";
+
+.btn{
+    color: $dark-green;
+
+    &:hover, &:active, &:focus{
+        color: $black;
+        background-color: $dark-green;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #main-character-content{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+}

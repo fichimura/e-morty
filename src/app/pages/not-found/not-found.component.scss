@@ -1,0 +1,9 @@
+@import "../../../styles/styles.scss";
+
+.btn{
+    background-color: $dark-green;
+
+    &:hover, &:focus{
+        border: 0.1rem solid $dark-green
+    }
+}
