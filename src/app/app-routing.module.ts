@@ -6,13 +6,27 @@ import { SigninComponent } from './pages/auth/signin/signin.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { CharactersComponent } from './pages/characters/characters.component';
+import { CharacterComponent } from './pages/character/character.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'signin', component: SigninComponent},
-  {path: 'user', component: UserProfileComponent, canActivate: [AuthGuard]},
-  {path: 'characters', component: CharactersComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SigninComponent },
+  {
+    path: 'user',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'character',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: CharactersComponent },
+      { path: ':characterId', component: CharacterComponent }
+    ]
+  },
+  { path: '**', component: NotFoundComponent } 
 ];
 
 @NgModule({
