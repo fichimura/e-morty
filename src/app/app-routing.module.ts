@@ -8,6 +8,7 @@ import { AuthGuard } from './pages/auth/auth.guard';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { CharacterComponent } from './pages/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { LocationsComponent } from './pages/locations/locations.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,13 @@ const routes: Routes = [
     children: [
       { path: '', component: CharactersComponent },
       { path: ':characterId', component: CharacterComponent }
+    ]
+  },
+  {
+    path: 'location',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: LocationsComponent },
     ]
   },
   { path: '**', component: NotFoundComponent } 
