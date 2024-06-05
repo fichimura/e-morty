@@ -17,11 +17,12 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { environment } from '../environments/environment';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { FetchApiService } from './services/fetchApi.service';
-import { CharacterComponent } from './pages/character/character.component';
+import { CharacterComponent } from './pages/characters/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SearchBoxComponent } from './UI/search-box/search-box.component';
 import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { LocationComponent } from './pages/locations/location/location.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LocationsComponent } from './pages/locations/locations.component';
     NotFoundComponent,
     SearchBoxComponent,
     ListingSubjectsComponent,
-    LocationsComponent
+    LocationsComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
