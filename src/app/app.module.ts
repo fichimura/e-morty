@@ -21,6 +21,7 @@ import { CharacterComponent } from './pages/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SearchBoxComponent } from './UI/search-box/search-box.component';
 import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects.component';
+import { LocationsComponent } from './pages/locations/locations.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects
     CharacterComponent,
     NotFoundComponent,
     SearchBoxComponent,
-    ListingSubjectsComponent
+    ListingSubjectsComponent,
+    LocationsComponent
   ],
   imports: [
     BrowserModule,
