@@ -10,9 +10,11 @@
 }
 
 @media screen and (max-width: 600px) {
+    app-return{
+        order:1;
+    }
     #main-character-content{
         display: flex;
         flex-direction: column-reverse;
     }
-
 }
