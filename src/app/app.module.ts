@@ -16,9 +16,11 @@ import { AuthService } from './services/auth.service';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
 import { CharactersComponent } from './pages/characters/characters.component';
-import { CharacterService } from './services/character.service';
+import { FetchApiService } from './services/fetchApi.service';
 import { CharacterComponent } from './pages/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SearchBoxComponent } from './UI/search-box/search-box.component';
+import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     UserProfileComponent,
     CharactersComponent,
     CharacterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SearchBoxComponent,
+    ListingSubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   providers: [
     provideClientHydration(),
     AuthService,
-    CharacterService
+    FetchApiService
   ],
   bootstrap: [AppComponent]
 })

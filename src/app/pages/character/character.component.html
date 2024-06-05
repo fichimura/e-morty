@@ -2,36 +2,36 @@
     <div>
         <div class="d-flex">
             <p class="fw-bold me-2">Name</p>
-            <p>{{character.name}}</p>
+            <p *ngIf="character.name; else not_known">{{character.name}}</p>
         </div>
         <div class="d-flex">
             <p class="fw-bold me-2">Status</p>
-            <p>{{character.status}}</p>
+            <p *ngIf="character.status; else not_known">{{character.status}}</p>
         </div>
         <div class="d-flex">
             <p class="fw-bold me-2">Species</p>
-            <p>{{character.species}}</p>
+            <p *ngIf="character.species; else not_known">{{character.species}}</p>
         </div>
         <div class="d-flex">
             <p class="fw-bold me-2">Type</p>
-            <p>{{character.type}}</p>
+            <p *ngIf="character.type; else not_known">{{character.type}}</p>
         </div>
         <div class="d-flex">
             <p class="fw-bold me-2">Gender</p>
-            <p>{{character.gender}}</p>
+            <p *ngIf="character.gender; else not_known">{{character.gender}}</p>
         </div>
         <div class="d-flex">
             <p class="fw-bold me-2">Origin</p>
-            <a routerLink="">{{character.origin.name}}</a>
+            <a  *ngIf="character.origin; else not_known" routerLink="" >{{character.origin.name}}</a>
             <!-- <p>{{character.origin.url}}</p> -->
         </div>
         <div class="d-flex">
             <p class="fw-bold me-2">Location</p>
-            <a routerLink="">{{character.location.name}}</a>
+            <a  *ngIf="character.location; else not_known" routerLink="">{{character.location.name}}</a>
             <!-- <p>{{character.location.url}}</p> -->
         </div>
         <p class="fw-bold">Episodes in which {{character.name}} appears</p>
-        <div id="list-episodes" class="d-flex flex-wrap w-75">
+        <div *ngIf="characterEpisodes; else not_known" id="list-episodes" class="d-flex flex-wrap w-75">
             <div *ngFor="let episode of characterEpisodes" class="flex-shrink-1">
                 <a routerLink="" role="button" class="btn">{{episode}}</a>
             </div>
@@ -41,3 +41,5 @@
         <img class="img-fluid rounded-start" src={{character.image}} alt={{character.name}} >
     </div>
 </div>
+
+<ng-template #not_known><p class="fst-italic">No information about it</p></ng-template>

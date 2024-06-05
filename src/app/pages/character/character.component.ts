@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterService } from '../../services/character.service';
+import { FetchApiService } from '../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
-import { Character } from '../characters/characters.model';
+import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-character',
@@ -16,7 +16,7 @@ export class CharacterComponent implements OnInit {
 
   characterEpisodes: string[] = [];
 
-  constructor(private characterService: CharacterService, private route: ActivatedRoute){}
+  constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
 
   ngOnInit(){
     this.characterId = this.route.snapshot.paramMap.get('characterId');
@@ -27,10 +27,16 @@ export class CharacterComponent implements OnInit {
 
   getCharacter(characterId: string): void{
     this.loading = true;
-    this.characterService.getCharacter(this.characterId).subscribe(
+    this.fetchApiService.getSubject(this.characterId, 'character').subscribe(
       {
-      next: response => this.character = response,
-      error: err => console.log(err),
+      next: response => {
+        this.character = response;
+        this.loading = false;
+      },
+      error: err => {
+        console.log(err);
+        this.loading = false;
+      },
       complete: () =>  {
           this.character.episode.forEach(episode => {
             const partsOfUrl = episode.split('/');
