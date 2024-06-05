@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FetchApiService } from '../../services/fetchApi.service';
+import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
-import { Character } from '../../models/character.model';
+import { Character } from '../../../models/character.model';
 
 @Component({
   selector: 'app-character',
@@ -21,11 +21,11 @@ export class CharacterComponent implements OnInit {
   ngOnInit(){
     this.characterId = this.route.snapshot.paramMap.get('characterId');
     if(this.characterId){
-      this.getCharacter(this.characterId);
+      this.getCharacter();
     }
   }
 
-  getCharacter(characterId: string): void{
+  getCharacter(): void{
     this.loading = true;
     this.fetchApiService.getSubject(this.characterId, 'character').subscribe(
       {
