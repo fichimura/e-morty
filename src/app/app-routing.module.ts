@@ -6,9 +6,10 @@ import { SigninComponent } from './pages/auth/signin/signin.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { CharactersComponent } from './pages/characters/characters.component';
-import { CharacterComponent } from './pages/character/character.component';
+import { CharacterComponent } from './pages/characters/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { LocationComponent } from './pages/locations/location/location.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: LocationsComponent },
+      { path: ':locationId', component: LocationComponent}
     ]
   },
   { path: '**', component: NotFoundComponent } 
