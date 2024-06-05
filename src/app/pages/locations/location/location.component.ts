@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Location } from '../../models/location.model';
-import { FetchApiService } from '../../services/fetchApi.service';
+import { Location } from '../../../models/location.model';
+import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
