@@ -22,7 +22,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SearchBoxComponent } from './UI/search-box/search-box.component';
 import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects.component';
 import { LocationsComponent } from './pages/locations/locations.component';
-import { LocationComponent } from './pages/locations/location/location.component';
+import { LocationComponent } from './pages/location/location.component';
+import { ReturnComponent } from './UI/return/return.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LocationComponent } from './pages/locations/location/location.component
     SearchBoxComponent,
     ListingSubjectsComponent,
     LocationsComponent,
-    LocationComponent
+    LocationComponent,
+    ReturnComponent
   ],
   imports: [
     BrowserModule,
