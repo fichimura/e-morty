@@ -1,0 +1,31 @@
+<div class="d-flex mb-3">
+    <div class="input-group">
+        <input type="text" class="form-control" [placeholder]="'Search for ' + searchBoxContext + ' ' +  searchFilter" [(ngModel)]="searchQuery" name="searchQuery">
+        <ng-container [ngSwitch]="searchBoxContext">
+            <button id="dropdown-filter-search" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{searchFilter | titlecase}}</button>
+            <ng-container *ngSwitchCase="'character'">
+                <ul id="dropdown-list" class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" (click)="onFilterChange('name')">Name</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('status')">Status</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('species')">Species</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('type')">Type</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('gender')">Gender</a></li>
+                </ul>
+            </ng-container>
+            <ng-container *ngSwitchCase="'location'">
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" (click)="onFilterChange('name')">Name</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('type')">Type</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('dimension')">Dimension</a></li>
+                </ul>
+            </ng-container>
+            <ng-container *ngSwitchCase="'location'">
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" (click)="onFilterChange('name')">Name</a></li>
+                    <li><a class="dropdown-item" (click)="onFilterChange('episode')">Episode</a></li>
+                </ul>
+            </ng-container>
+        </ng-container>
+        <button class="btn" (click)="onSearchChange({searchQuery,searchFilter})">Search</button>
+    </div>
+</div>

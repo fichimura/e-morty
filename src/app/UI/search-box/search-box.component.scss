@@ -1,0 +1,33 @@
+@import "../../../styles/styles.scss";
+
+#dropdown-filter-search{
+    background-color: transparent;
+    color:$dark-green
+}
+
+#dropdown-list{
+    background-color: $cold-white;
+
+    > li > a { 
+        color: $dark-green;
+    }
+}
+
+.btn{
+    background-color: $dark-green;
+
+    &:hover{
+        border: 0.1rem solid $dark-green;
+    }
+}
+
+.form-control{
+    background-color: $cold-white;
+    color:$dark-green;
+
+    &:focus, &:active{
+        background-color: $cold-white;
+        color:$dark-green;
+        border: 0.2rem solid $dark-green;
+    }
+}
