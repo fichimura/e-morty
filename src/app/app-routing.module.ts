@@ -9,6 +9,7 @@ import { CharactersComponent } from './pages/characters/characters.component';
 import { CharacterComponent } from './pages/characters/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { LocationComponent } from './pages/locations/location/location.component';
 
 const routes: Routes = [
@@ -34,6 +35,13 @@ const routes: Routes = [
     children: [
       { path: '', component: LocationsComponent },
       { path: ':locationId', component: LocationComponent}
+    ]
+  },
+  {
+    path: 'episode',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: EpisodesComponent },
     ]
   },
   { path: '**', component: NotFoundComponent } 

@@ -24,6 +24,7 @@ import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects
 import { LocationsComponent } from './pages/locations/locations.component';
 import { LocationComponent } from './pages/locations/location/location.component';
 import { ReturnComponent } from './UI/return/return.component';
+import { EpisodesComponent } from './pages/episodes/episodes.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReturnComponent } from './UI/return/return.component';
     ListingSubjectsComponent,
     LocationsComponent,
     LocationComponent,
-    ReturnComponent
+    ReturnComponent,
+    EpisodesComponent
   ],
   imports: [
     BrowserModule,
