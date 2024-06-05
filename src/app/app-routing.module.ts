@@ -10,6 +10,7 @@ import { CharacterComponent } from './pages/characters/character/character.compo
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { LocationComponent } from './pages/location/location.component';
+import { EpisodesComponent } from './pages/episodes/episodes.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +35,13 @@ const routes: Routes = [
     children: [
       { path: '', component: LocationsComponent },
       { path: ':locationId', component: LocationComponent}
+    ]
+  },
+  {
+    path: 'episode',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: EpisodesComponent },
     ]
   },
   { path: '**', component: NotFoundComponent } 
