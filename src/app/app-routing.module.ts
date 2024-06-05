@@ -9,7 +9,7 @@ import { CharactersComponent } from './pages/characters/characters.component';
 import { CharacterComponent } from './pages/characters/character/character.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LocationsComponent } from './pages/locations/locations.component';
-import { LocationComponent } from './pages/location/location.component';
+import { LocationComponent } from './pages/locations/location/location.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
