@@ -1,0 +1,25 @@
+<div id="location-content" class="d-flex p-5 m-5">
+   <app-return [pathToReturn]="'/location'"></app-return>
+    <div>
+        <div class="d-flex">
+            <p class="fw-bold me-2">Name</p>
+            <p *ngIf="location.name; else not_known">{{location.name}}</p>
+        </div>
+        <div class="d-flex">
+            <p class="fw-bold me-2">Type</p>
+            <p *ngIf="location.type; else not_known">{{location.type}}</p>
+        </div>
+        <div class="d-flex">
+            <p class="fw-bold me-2">Dimension</p>
+            <p *ngIf="location.dimension; else not_known">{{location.dimension}}</p>
+        </div>
+        <p class="fw-bold">Residents of {{location.name}}</p>
+        <div *ngIf="locationResidents; else not_known" id="list-residents" class="d-flex flex-wrap w-75">
+            <div *ngFor="let resident of locationResidents" class="flex-shrink-1">
+                <a routerLink="" role="button" class="btn">{{resident}}</a>
+            </div>
+        </div>  
+    </div>
+</div>
+
+<ng-template #not_known><p class="fst-italic">No information about it</p></ng-template>

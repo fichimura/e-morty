@@ -21,7 +21,6 @@ export class FetchApiService{
             urlToFetch += `&${key}=${filters[key]}`;
           }
         });
-        console.log('URL:',urlToFetch);
         return this.httpClient.get(urlToFetch);
     }
 
