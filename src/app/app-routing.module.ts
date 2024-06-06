@@ -11,6 +11,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { LocationComponent } from './pages/locations/location/location.component';
+import { EpisodeComponent } from './pages/episodes/episode/episode.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: EpisodesComponent },
+      { path: ':episodeId', component: EpisodeComponent },
     ]
   },
   { path: '**', component: NotFoundComponent } 
