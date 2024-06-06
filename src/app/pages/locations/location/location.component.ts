@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '../../../models/location.model';
 import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss'
 })
-export class LocationComponent implements OnInit{
+export class LocationComponent implements OnInit, OnDestroy{
+  getSubjectSubscription: Subscription;
+  
   loading = false;
 
   location: Location | undefined;
   locationId: string;
-
   locationResidents: string[] = [];
 
   constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
@@ -27,7 +29,7 @@ export class LocationComponent implements OnInit{
 
   getLocation(): void{
     this.loading = true;
-    this.fetchApiService.getSubject(this.locationId, 'location').subscribe(
+    this.getSubjectSubscription =  this.fetchApiService.getSubject(this.locationId, 'location').subscribe(
       {
       next: response => {
         this.location = response;
@@ -47,5 +49,9 @@ export class LocationComponent implements OnInit{
         }
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.getSubjectSubscription.unsubscribe();
   }
 }
