@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FetchApiService } from '../../services/fetchApi.service';
 import { Router } from '@angular/router';
 import { Character } from '../../models/character.model';
 import { Location } from '../../models/location.model';
 import { Episode } from '../../models/episode.model';
 import { SearchParams } from '../search-box/search-box.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-listing-subjects',
@@ -12,8 +13,10 @@ import { SearchParams } from '../search-box/search-box.component';
   styleUrl: './listing-subjects.component.scss'
 })
 
-export class ListingSubjectsComponent implements OnInit {
+export class ListingSubjectsComponent implements OnInit, OnDestroy {
   @Input() subjectType: string;
+
+  getSubjectsSubscription: Subscription;
 
   subjects: Character[] | Location[] | Episode[] = [];
   loading = false;
@@ -30,7 +33,7 @@ export class ListingSubjectsComponent implements OnInit {
 
   loadSubjects(): void {
     this.loading = true;
-    this.fetchApiService.getSubjects(this.currentPage, { [this.searchFilter]: this.searchQuery }, this.subjectType).subscribe({
+    this.getSubjectsSubscription = this.fetchApiService.getSubjects(this.currentPage, { [this.searchFilter]: this.searchQuery }, this.subjectType).subscribe({
       next: response =>{ 
         this.subjects = response.results;
         this.loading = false;
@@ -45,7 +48,7 @@ export class ListingSubjectsComponent implements OnInit {
   loadMoreSubjects(): void {
     if (this.loading) return;
     this.loading = true;
-    this.fetchApiService.getSubjects(this.currentPage, { [this.searchFilter]: this.searchQuery }, this.subjectType).subscribe(
+    this.getSubjectsSubscription = this.fetchApiService.getSubjects(this.currentPage, { [this.searchFilter]: this.searchQuery }, this.subjectType).subscribe(
       {
         next: response =>{ 
           this.subjects = [...this.subjects, ...response.results]
@@ -92,5 +95,9 @@ export class ListingSubjectsComponent implements OnInit {
     this.searchQuery = '';
     this.searchFilter = 'name';
     this.loadSubjects();
+  }
+
+  ngOnDestroy(): void {
+    this.getSubjectsSubscription.unsubscribe();
   }
 }

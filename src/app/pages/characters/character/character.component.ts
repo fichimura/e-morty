@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from '../../../models/character.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss'
 })
-export class CharacterComponent implements OnInit {
+export class CharacterComponent implements OnInit, OnDestroy { 
+  getSubjectSubscription: Subscription;
+  
   loading = false;
 
   character: Character | undefined;
   characterId: string;
-
   characterEpisodes: string[] = [];
 
   constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
@@ -27,7 +29,7 @@ export class CharacterComponent implements OnInit {
 
   getCharacter(): void{
     this.loading = true;
-    this.fetchApiService.getSubject(this.characterId, 'character').subscribe(
+    this.getSubjectSubscription = this.fetchApiService.getSubject(this.characterId, 'character').subscribe(
       {
       next: response => {
         this.character = response;
@@ -48,5 +50,9 @@ export class CharacterComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.getSubjectSubscription.unsubscribe();
   }
 }
