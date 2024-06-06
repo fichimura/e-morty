@@ -16,12 +16,13 @@ export class FetchApiService{
     getSubjects( page: number, filters: any = {}, subjectType: string): Observable<any>{
       let urlToFetch = `${this.API_URL}/${subjectType}/?page=${page}`;
 
-        Object.keys(filters).forEach(key => {
-          if (filters[key]) {
-            urlToFetch += `&${key}=${filters[key]}`;
-          }
-        });
-        return this.httpClient.get(urlToFetch);
+      Object.keys(filters).forEach(key => {
+        if (filters[key]) {
+          urlToFetch += `&${key}=${filters[key]}`;
+        }
+      });
+
+      return this.httpClient.get(urlToFetch);
     }
 
     getSubject(subjectId :string, subjectType: string): Observable<any>{

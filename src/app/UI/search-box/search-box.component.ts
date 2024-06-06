@@ -17,12 +17,11 @@ export class SearchBoxComponent {
   @Input() searchFilter: string = 'name';
   @Output() searchEvent = new EventEmitter<SearchParams>();
 
-
-  onSearchChange(searchParams: SearchParams){
+  onSearchChange(searchParams: SearchParams): void{
     this.searchEvent.emit(searchParams);
   }
 
-  onFilterChange(filter: string) {
+  onFilterChange(filter: string): void{
     this.searchFilter = filter;
     this.onSearchChange({searchQuery: this.searchQuery, searchFilter: this.searchFilter});
   }

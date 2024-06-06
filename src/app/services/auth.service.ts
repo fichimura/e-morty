@@ -15,7 +15,7 @@ export class AuthService{
 
     constructor(private router: Router,private angularFireAuth: AngularFireAuth, private firestore: AngularFirestore ){}
 
-    initAuthListener(){
+    initAuthListener(): void{
         this.angularFireAuth.authState.subscribe(user =>{
             if(user){
                 this.userId = user.uid;
@@ -60,11 +60,11 @@ export class AuthService{
         });
     }
 
-    logout(){
+    logout(): void{
         this.angularFireAuth.signOut();
     }
 
-    isAuth(){
+    isAuth(): boolean{
         return this.isAuthenticated;
     }
 

@@ -18,7 +18,7 @@ export class CharacterComponent implements OnInit {
 
   constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.characterId = this.route.snapshot.paramMap.get('characterId');
     if(this.characterId){
       this.getCharacter();
@@ -49,6 +49,4 @@ export class CharacterComponent implements OnInit {
       }
     )
   }
-
-
 }

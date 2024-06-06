@@ -11,8 +11,7 @@ export class SigninComponent {
   signedInSuccessfully: boolean = true;
   errorMessage: string;
 
-  constructor(private authService: AuthService){
-  }
+  constructor(private authService: AuthService){}
 
   onSubmit(form: NgForm): void{
     this.authService.login(
