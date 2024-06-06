@@ -1,6 +1,6 @@
 <section class="container-fluid mt-5">
     <h2 class="mb-3">Sign in</h2>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <form class="mb-5" #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
             <input type="email" class="form-control" id="inputEmail" required ngModel name="email">
@@ -14,4 +14,6 @@
             <button type="button" class="btn cancel">Cancel</button>
         </div>
     </form>
+
+    <app-error-handling *ngIf="!signedInSuccessfully" [message]="errorMessage" ></app-error-handling>
 </section>
