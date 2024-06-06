@@ -9,15 +9,18 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class SignupComponent {
 
-  constructor(private authService: AuthService){
-
-  }
+  constructor(private authService: AuthService){}
 
   onSubmit(form: NgForm){
     this.authService.registerUser(
       {
         email: form.value.email,
         password: form.value.password
+      },
+      {
+        name: form.value.name,
+        country: form.value.country,
+        email: form.value.email
       }
     );
   } 
