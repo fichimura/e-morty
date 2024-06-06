@@ -1,7 +1,11 @@
 @import '../../../styles/styles.scss';
 
 h5, li > a{
-    color: $base-green
+    color: $base-green;
+
+    &:hover, &:focus, &:active{
+        color: $cold-white
+    }
 }
 
 .offcanvas{
