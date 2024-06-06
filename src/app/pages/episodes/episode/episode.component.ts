@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
 import { Episode } from '../../../models/episode.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-episode',
   templateUrl: './episode.component.html',
   styleUrl: './episode.component.scss'
 })
-export class EpisodeComponent implements OnInit {
+export class EpisodeComponent implements OnInit, OnDestroy {
+  getSubjectSubscription: Subscription;
+  
   loading = false;
 
   episode: Episode | undefined;
   episodeId: string;
-
   episodeCharacters: string[] = [];
 
-  constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
+  constructor(private fetchApiService: FetchApiService,
+              private route: ActivatedRoute){}
 
   ngOnInit(): void{
     this.episodeId = this.route.snapshot.paramMap.get('episodeId');
@@ -27,7 +30,7 @@ export class EpisodeComponent implements OnInit {
 
   getEpisode(): void{
     this.loading = true;
-    this.fetchApiService.getSubject(this.episodeId, 'episode').subscribe(
+    this.getSubjectSubscription =  this.fetchApiService.getSubject(this.episodeId, 'episode').subscribe(
       {
       next: response => {
         this.episode = response;
@@ -47,5 +50,9 @@ export class EpisodeComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.getSubjectSubscription.unsubscribe();
   }
 }
