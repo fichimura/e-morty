@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '../../../models/location.model';
 import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './location.component.html',
   styleUrl: './location.component.scss'
 })
-export class LocationComponent {
+export class LocationComponent implements OnInit{
   loading = false;
 
   location: Location | undefined;
@@ -18,7 +18,7 @@ export class LocationComponent {
 
   constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.locationId = this.route.snapshot.paramMap.get('locationId');
     if(this.locationId){
       this.getLocation();
