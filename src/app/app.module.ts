@@ -26,6 +26,7 @@ import { LocationComponent } from './pages/locations/location/location.component
 import { ReturnComponent } from './UI/return/return.component';
 import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { EpisodeComponent } from './pages/episodes/episode/episode.component';
+import { ErrorHandlingComponent } from './UI/error-handling/error-handling.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EpisodeComponent } from './pages/episodes/episode/episode.component';
     LocationComponent,
     ReturnComponent,
     EpisodesComponent,
-    EpisodeComponent
+    EpisodeComponent,
+    ErrorHandlingComponent
   ],
   imports: [
     BrowserModule,

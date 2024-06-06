@@ -30,12 +30,11 @@ export class AuthService{
         })
     }
 
-    registerUser(authData: AuthData, userData: User ){
-        this.angularFireAuth.createUserWithEmailAndPassword(
+    registerUser(authData: AuthData, userData: User ): Promise<any>{
+        return this.angularFireAuth.createUserWithEmailAndPassword(
             authData.email,
             authData.password
         ).then(result =>{
-            console.log(result);
             if(result.user){
                 this.firestore.collection('users').doc(result.user.uid).set(userData)
                     .then(() => {
@@ -44,19 +43,20 @@ export class AuthService{
                         console.log("There was an error", error);
                     })
             }
+            return result;
         }).catch(error => {
-            console.log(error);
+            throw error;
         });
     }
 
-    login(authData: AuthData){
-        this.angularFireAuth.signInWithEmailAndPassword(
+    login(authData: AuthData): Promise<any>{
+        return this.angularFireAuth.signInWithEmailAndPassword(
             authData.email,
             authData.password
         ).then(result =>{
-            console.log(result);
+            return result;
         }).catch(error => {
-            console.log(error);
+            throw error;
         });
     }
 
