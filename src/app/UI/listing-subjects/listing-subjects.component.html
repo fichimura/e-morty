@@ -4,7 +4,7 @@
                     [searchBoxContext]="subjectType"
                     (searchEvent)="onSearchClicked($event)">
     </app-search-box>
-    <div *ngIf="!loading" #subjectList class="subject-list mb-3" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" [scrollWindow]="false" (scrolled)="onScroll()">
+    <div #subjectList class="subject-list mb-3" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" [scrollWindow]="false" (scrolled)="onScroll()">
         <ng-container *ngIf="subjects.length > 0; else resources_not_found">
             <ng-container [ngSwitch]="subjectType">
                 <div *ngFor="let subject of subjects">
