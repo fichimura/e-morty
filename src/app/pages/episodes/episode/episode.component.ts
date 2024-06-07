@@ -62,7 +62,12 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.loadingCharacters = true;
     this.getMultipleSubjects = this.fetchApiService.getMultipleSubjects('character', characterIds).subscribe({
       next: response => {
-        this.episodeCharactersObjects = response;
+        if(Array.isArray(response)){
+          this.episodeCharactersObjects = response;
+        }else{
+          this.episodeCharactersObjects = [response];
+        }
+        
         this.loadingCharacters = false;
       },
       error: error => {

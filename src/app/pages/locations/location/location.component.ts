@@ -62,7 +62,12 @@ export class LocationComponent implements OnInit, OnDestroy{
     this.loadingResidents = true;
     this.getMultipleSubjects = this.fetchApiService.getMultipleSubjects('character', locationResidentsIds).subscribe({
       next: response => {
-        this.locationResidentsObjects = response;
+        if(Array.isArray(response)){
+          this.locationResidentsObjects = response;
+        }else{
+          this.locationResidentsObjects = [response];
+        }
+
         this.loadingResidents = false;
       },
       error: error => {

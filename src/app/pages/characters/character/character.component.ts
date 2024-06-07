@@ -3,6 +3,7 @@ import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from '../../../models/character.model';
 import { Subscription } from 'rxjs';
+import { Episode } from '../../../models/episode.model';
 
 @Component({
   selector: 'app-character',
@@ -20,7 +21,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
   character: Character | undefined;
   characterId: string;
   characterEpisodes: string[] = [];
-  characterEpisodesObjects: any = [];
+  characterEpisodesObjects: any;
 
   constructor(private fetchApiService: FetchApiService,
               private route: ActivatedRoute,
@@ -62,7 +63,12 @@ export class CharacterComponent implements OnInit, OnDestroy {
     this.loadingEpisodes = true;
     this.getMultipleSubjects = this.fetchApiService.getMultipleSubjects('episode', episodesIds).subscribe({
       next: response => {
-        this.characterEpisodesObjects = response;
+        if(Array.isArray(response)){
+          this.characterEpisodesObjects = response;
+        }else{
+          this.characterEpisodesObjects = [response];
+        }
+
         this.loadingEpisodes = false;
       },
       error: error => {
