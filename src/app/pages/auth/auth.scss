@@ -1,12 +1,12 @@
 @import '../../../styles/styles.scss';
 
 .form-control{
-    background-color: $dark-green;
-    color: $black;
+    background-color: $cold-white;
+    color: $dark-green;
 
     &:focus{
-        background-color: $base-green;
-        color: $cold-white
+        border: 0.2rem solid $dark-green;
+        color: $base-green;
     }
 }
 
