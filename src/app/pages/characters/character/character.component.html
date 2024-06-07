@@ -1,46 +1,50 @@
-<div id="main-character-content" class="d-flex justify-content-around p-5 m-5">
-    <app-return [pathToReturn]="'/location'" class=""></app-return>
-    <div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Name</p>
-            <p *ngIf="character.name; else not_known">{{character.name}}</p>
+<div class="d-flex justify-content-center p-5 m-5">
+    <div *ngIf="!loading" id="main-character-content">
+        <app-return [returnText]="'Return to characters listing'" [pathToReturn]="'/character'" class=""></app-return>
+        <div id="img-container" class="container">
+            <img class="img-fluid rounded-start" src={{character.image}} alt={{character.name}} >
         </div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Status</p>
-            <p *ngIf="character.status; else not_known">{{character.status}}</p>
-        </div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Species</p>
-            <p *ngIf="character.species; else not_known">{{character.species}}</p>
-        </div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Type</p>
-            <p *ngIf="character.type; else not_known">{{character.type}}</p>
-        </div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Gender</p>
-            <p *ngIf="character.gender; else not_known">{{character.gender}}</p>
-        </div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Origin</p>
-            <a  *ngIf="character.origin; else not_known" routerLink="" >{{character.origin.name}}</a>
-            <!-- <p>{{character.origin.url}}</p> -->
-        </div>
-        <div class="d-flex">
-            <p class="fw-bold me-2">Location</p>
-            <a  *ngIf="character.location; else not_known" routerLink="">{{character.location.name}}</a>
-            <!-- <p>{{character.location.url}}</p> -->
-        </div>
-        <p class="fw-bold">Episodes in which {{character.name}} appears</p>
-        <div *ngIf="characterEpisodes; else not_known" id="list-episodes" class="d-flex flex-wrap w-75">
-            <div *ngFor="let episode of characterEpisodes" class="flex-shrink-1">
-                <a routerLink="" role="button" class="btn">{{episode}}</a>
+        <div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Name</p>
+                <p *ngIf="character.name; else not_known">{{character.name}}</p>
             </div>
-        </div>  
+            <div class="d-flex">
+                <p class="fw-bold me-2">Status</p>
+                <p *ngIf="character.status; else not_known">{{character.status}}</p>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Species</p>
+                <p *ngIf="character.species; else not_known">{{character.species}}</p>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Type</p>
+                <p *ngIf="character.type; else not_known">{{character.type}}</p>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Gender</p>
+                <p *ngIf="character.gender; else not_known">{{character.gender}}</p>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Origin</p>
+                <a *ngIf="character.origin; else not_known" (click)="onOriginClicked(character.origin.url)">{{character.origin.name}}</a>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Location</p>
+                <a *ngIf="character.location; else not_known" (click)="onLocationClicked(character.location.url)">{{character.location.name}}</a>
+            </div>
+            <p class="fw-bold">Episodes in which {{character.name}} appears</p>
+            <div *ngIf="characterEpisodesObjects; else not_known" id="list-episodes">
+                <div *ngFor="let episode of characterEpisodesObjects" class="d-flex flex-column">
+                    <a class="me-2" (click)="onEpisodeSelected(episode.id)">{{episode.episode}}</a>
+                </div>
+
+                <app-loading *ngIf="loadingEpisodes" [loadingMessage]="'Loading episode characters...'"></app-loading>
+            </div>  
+        </div>
     </div>
-    <div id="img-container" class="container">
-        <img class="img-fluid rounded-start" src={{character.image}} alt={{character.name}} >
-    </div>
+
+    <app-loading *ngIf="loading" [loadingMessage]="'Loading character content...'"></app-loading>
 </div>
 
 <ng-template #not_known><p class="fst-italic">No information about it</p></ng-template>
