@@ -1,25 +1,33 @@
-<div id="episode-content" class="d-flex p-5 m-5">
-    <app-return [pathToReturn]="'/episode'"></app-return>
-     <div>
-         <div class="d-flex">
-             <p class="fw-bold me-2">Name</p>
-             <p *ngIf="episode.name; else not_known">{{episode.name}}</p>
-         </div>
-         <div class="d-flex">
-             <p class="fw-bold me-2">Air date</p>
-             <p *ngIf="episode.air_date; else not_known">{{episode.air_date}}</p>
-         </div>
-         <div class="d-flex">
-             <p class="fw-bold me-2">Episode</p>
-             <p *ngIf="episode.episode; else not_known">{{episode.episode}}</p>
-         </div>
-         <p class="fw-bold">Characters in episode - {{episode.name}}</p>
-         <div *ngIf="episodeCharacters; else not_known" id="list-residents" class="d-flex flex-wrap w-75">
-             <div *ngFor="let character of episodeCharacters" class="flex-shrink-1">
-                 <a routerLink="" role="button" class="btn">{{character}}</a>
-             </div>
-         </div>  
-     </div>
- </div>
- 
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <app-return [returnText]="'Return to episode listing'" [pathToReturn]="'/episode'"></app-return>
+
+    <div *ngIf="!loading" id="episode-content" class="d-flex p-3">
+        <div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Name</p>
+                <p *ngIf="episode.name; else not_known">{{episode.name}}</p>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Air date</p>
+                <p *ngIf="episode.air_date; else not_known">{{episode.air_date}}</p>
+            </div>
+            <div class="d-flex">
+                <p class="fw-bold me-2">Episode</p>
+                <p *ngIf="episode.episode; else not_known">{{episode.episode}}</p>
+            </div>
+            <p class="fw-bold">Characters in episode - {{episode.name}}</p>
+            <div *ngIf="episodeCharactersObjects; else not_known" id="list-residents">
+                <div *ngFor="let character of episodeCharactersObjects" class="d-flex flex-column">
+                    <a class="mb-2" (click)="onCharacterSelected(character.id)" class="me-2">{{character.name}}</a>
+                </div>
+
+                <app-loading *ngIf="loadingCharacters" [loadingMessage]="'Loading episode characters...'"></app-loading>
+            </div>  
+        </div>
+    </div>
+
+    <app-loading *ngIf="loading" [loadingMessage]="'Loading episode content...'"></app-loading>
+</div>
+
+
  <ng-template #not_known><p class="fst-italic">No information about it</p></ng-template>
