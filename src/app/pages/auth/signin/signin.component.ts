@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,8 @@ export class SigninComponent {
   signedInSuccessfully: boolean = true;
   errorMessage: string;
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService,
+              private router: Router){}
 
   onSubmit(form: NgForm): void{
     this.authService.login(
@@ -42,5 +44,9 @@ export class SigninComponent {
         return 'There was an error when sign in. Try again.';
       }
     }
+  }
+
+  onCancelClicked(): void{
+    this.router.navigate(['/']);
   }
 }
