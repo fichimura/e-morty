@@ -7,7 +7,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { AuthGuard } from './pages/auth/auth.guard';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { CharacterComponent } from './pages/characters/character/character.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotFoundComponent } from './UI/not-found/not-found.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { LocationComponent } from './pages/locations/location/location.component';
