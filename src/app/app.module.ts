@@ -18,7 +18,7 @@ import { environment } from '../environments/environment';
 import { CharactersComponent } from './pages/characters/characters.component';
 import { FetchApiService } from './services/fetchApi.service';
 import { CharacterComponent } from './pages/characters/character/character.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotFoundComponent } from './UI/not-found/not-found.component';
 import { SearchBoxComponent } from './UI/search-box/search-box.component';
 import { ListingSubjectsComponent } from './UI/listing-subjects/listing-subjects.component';
 import { LocationsComponent } from './pages/locations/locations.component';
@@ -27,6 +27,7 @@ import { ReturnComponent } from './UI/return/return.component';
 import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { EpisodeComponent } from './pages/episodes/episode/episode.component';
 import { ErrorHandlingComponent } from './UI/error-handling/error-handling.component';
+import { LoadingComponent } from './UI/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ErrorHandlingComponent } from './UI/error-handling/error-handling.compo
     ReturnComponent,
     EpisodesComponent,
     EpisodeComponent,
-    ErrorHandlingComponent
+    ErrorHandlingComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
