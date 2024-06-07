@@ -8,15 +8,25 @@ import { Subscription } from 'rxjs';
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  getUserSubscription: Subscription;
+  private getUserSubscription: Subscription;
   
   user: any;
+  loadingUserData = false;
+  hasError = false;
 
   constructor(private authService: AuthService){}
 
   ngOnInit(): void {
-    this.getUserSubscription = this.authService.getUserData().subscribe(userData => {
-      this.user = userData;
+    this.loadingUserData = true;
+    this.getUserSubscription = this.authService.getUserData().subscribe({
+      next: userData => {
+        this.user = userData;
+        this.loadingUserData = false;
+      },
+      error: error => {
+        this.hasError = true;
+        this.loadingUserData = false;
+      }
     });
   }
 

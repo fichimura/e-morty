@@ -10,11 +10,12 @@ import { Subscription } from 'rxjs';
   styleUrl: './location.component.scss'
 })
 export class LocationComponent implements OnInit, OnDestroy{
-  getMultipleSubjects: Subscription;
-  getSubjectSubscription: Subscription;
+  private getMultipleSubjects: Subscription;
+  private getSubjectSubscription: Subscription;
   
   loading = false;
   loadingResidents = false;
+  hasError = false;
 
   location: Location | undefined;
   locationId: string;
@@ -41,7 +42,7 @@ export class LocationComponent implements OnInit, OnDestroy{
         this.loading = false;
       },
       error: err => {
-        console.log(err);
+        this.hasError = true;
         this.loading = false;
       },
       complete: () =>  {
@@ -65,7 +66,7 @@ export class LocationComponent implements OnInit, OnDestroy{
         this.loadingResidents = false;
       },
       error: error => {
-        console.log(error);
+        this.hasError = true;
         this.loadingResidents = false;
       }
     });

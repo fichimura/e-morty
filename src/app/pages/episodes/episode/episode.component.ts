@@ -3,8 +3,6 @@ import { FetchApiService } from '../../../services/fetchApi.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Episode } from '../../../models/episode.model';
 import { Subscription } from 'rxjs';
-import { response } from 'express';
-import { Character } from '../../../models/character.model';
 
 @Component({
   selector: 'app-episode',
@@ -12,11 +10,12 @@ import { Character } from '../../../models/character.model';
   styleUrl: './episode.component.scss'
 })
 export class EpisodeComponent implements OnInit, OnDestroy {
-  getMultipleSubjects: Subscription;
-  getSubjectSubscription: Subscription;
+  private getMultipleSubjects: Subscription;
+  private getSubjectSubscription: Subscription;
   
   loading = false;
   loadingCharacters = false;
+  hasError = false;
 
   episode: Episode | undefined;
   episodeId: string;
@@ -43,7 +42,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.loading = false;
       },
       error: err => {
-        console.log(err);
+        this.hasError = true;
         this.loading = false;
       },
       complete: () =>  {
@@ -67,7 +66,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.loadingCharacters = false;
       },
       error: error => {
-        console.log(error);
+        this.hasError = true;
         this.loadingCharacters = false;
       }
     });

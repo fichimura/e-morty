@@ -15,6 +15,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
   
   loading = false;
   loadingEpisodes = false;
+  hasError = false;
 
   character: Character | undefined;
   characterId: string;
@@ -40,8 +41,8 @@ export class CharacterComponent implements OnInit, OnDestroy {
         this.character = response;
         this.loading = false;
       },
-      error: err => {
-        console.log(err);
+      error: error => {
+        this.hasError = true;
         this.loading = false;
       },
       complete: () =>  {
@@ -65,7 +66,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
         this.loadingEpisodes = false;
       },
       error: error => {
-        console.log(error);
+        this.hasError = true;
         this.loadingEpisodes = false;
       }
     });
