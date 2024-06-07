@@ -5,6 +5,8 @@ import { Component, Input } from '@angular/core';
   templateUrl: './return.component.html',
   styleUrl: './return.component.scss'
 })
+
 export class ReturnComponent {
   @Input() pathToReturn: string;
+  @Input() returnText: string;
 }
