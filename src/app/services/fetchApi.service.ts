@@ -1,11 +1,7 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, Input } from "@angular/core";
-import { Character } from "../models/character.model";
-import { Location } from "../models/location.model";
-import { Episode } from "../models/episode.model";
+import { Injectable} from "@angular/core";
 
 import { Observable } from "rxjs";
-import { url } from "inspector";
 
 @Injectable()
 export class FetchApiService{
@@ -25,7 +21,11 @@ export class FetchApiService{
       return this.httpClient.get(urlToFetch);
     }
 
-    getSubject(subjectId :string, subjectType: string): Observable<any>{
+    getSubject(subjectType: string, subjectId :string): Observable<any>{
         return this.httpClient.get(`${this.API_URL}/${subjectType}/${subjectId}`);
+    }
+
+    getMultipleSubjects(subjectType: string, subjectListItem: string[] ): Observable<any>{
+      return this.httpClient.get(`${this.API_URL}/${subjectType}/${subjectListItem}`);
     }
 }
