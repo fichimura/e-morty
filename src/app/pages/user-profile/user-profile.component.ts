@@ -21,6 +21,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getUserSubscription.unsubscribe();
+    if(this.getUserSubscription){
+      this.getUserSubscription.unsubscribe();      
+    }
   }
 }
