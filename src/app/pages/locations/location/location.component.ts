@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '../../../models/location.model';
 import { FetchApiService } from '../../../services/fetchApi.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,15 +10,20 @@ import { Subscription } from 'rxjs';
   styleUrl: './location.component.scss'
 })
 export class LocationComponent implements OnInit, OnDestroy{
+  getMultipleSubjects: Subscription;
   getSubjectSubscription: Subscription;
   
   loading = false;
+  loadingResidents = false;
 
   location: Location | undefined;
   locationId: string;
   locationResidents: string[] = [];
+  locationResidentsObjects: any = [];
 
-  constructor(private fetchApiService: FetchApiService, private route: ActivatedRoute){}
+  constructor(private fetchApiService: FetchApiService,
+              private route: ActivatedRoute,
+              private router: Router){}
 
   ngOnInit(): void{
     this.locationId = this.route.snapshot.paramMap.get('locationId');
@@ -29,7 +34,7 @@ export class LocationComponent implements OnInit, OnDestroy{
 
   getLocation(): void{
     this.loading = true;
-    this.getSubjectSubscription =  this.fetchApiService.getSubject(this.locationId, 'location').subscribe(
+    this.getSubjectSubscription =  this.fetchApiService.getSubject('location', this.locationId).subscribe(
       {
       next: response => {
         this.location = response;
@@ -46,12 +51,32 @@ export class LocationComponent implements OnInit, OnDestroy{
             this.locationResidents.push(residentId); 
           });
           this.loading = false;
+          this.loadResidentsNames(this.locationResidents);
         }
       }
     )
   }
 
+  loadResidentsNames(locationResidentsIds: string[]): void{
+    this.loadingResidents = true;
+    this.getMultipleSubjects = this.fetchApiService.getMultipleSubjects('character', locationResidentsIds).subscribe({
+      next: response => {
+        this.locationResidentsObjects = response;
+        this.loadingResidents = false;
+      },
+      error: error => {
+        console.log(error);
+        this.loadingResidents = false;
+      }
+    });
+  }
+
+  onResidentSelected(characterId: string): void{
+    this.router.navigate(['/character', characterId]);
+  }
+
   ngOnDestroy(): void {
     this.getSubjectSubscription.unsubscribe();
+    this.getMultipleSubjects.unsubscribe();
   }
 }
