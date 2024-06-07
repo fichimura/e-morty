@@ -10,6 +10,11 @@ import { EpisodeComponent } from "./episodes/episode/episode.component";
 import { HomeComponent } from "./home/home.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UIModule } from "../UI/ui.module";
+import { CharacterRoutingModule } from "./characters/character-routing.module";
+import { EpisodeRoutingModule } from "./episodes/episode-routing.module";
+import { LocationRoutingModule } from "./locations/location-routing.module";
+import { HomeRoutingModule } from "./home/home-routing.module";
+import { UserRoutingModule } from "./user-profile/user-routing-module";
 
 @NgModule({
     declarations: [
@@ -24,7 +29,12 @@ import { UIModule } from "../UI/ui.module";
     ],
     imports: [
         CommonModule,
-        UIModule
+        UIModule,
+        HomeRoutingModule,
+        UserRoutingModule,
+        CharacterRoutingModule,
+        EpisodeRoutingModule,
+        LocationRoutingModule,
     ],
 })
 
