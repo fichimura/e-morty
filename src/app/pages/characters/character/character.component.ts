@@ -86,7 +86,11 @@ export class CharacterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getSubjectSubscription.unsubscribe();
-    this.getMultipleSubjects.unsubscribe();
+    if(this.getSubjectSubscription){
+      this.getSubjectSubscription.unsubscribe();      
+    }
+    if(this.getMultipleSubjects){
+      this.getMultipleSubjects.unsubscribe();
+    }
   }
 }

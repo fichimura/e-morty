@@ -98,6 +98,8 @@ export class ListingSubjectsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getSubjectsSubscription.unsubscribe();
+    if(this.getSubjectsSubscription){
+      this.getSubjectsSubscription.unsubscribe();
+    }
   }
 }
